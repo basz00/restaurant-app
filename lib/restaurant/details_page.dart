@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/common/ui/rating.dart';
+import 'package:restaurant_app/restaurant/widgets/menu_row.dart';
 
 import 'model/restaurants.dart';
 
@@ -49,6 +50,11 @@ class DetailsPage extends StatelessWidget {
                   Text(restaurant.description),
                 ],
               ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(
+                  left: 16, right: 16, top: 8, bottom: 16),
+              child: MenuRow(menus: restaurant.menus),
             )
           ],
         ),
