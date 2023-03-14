@@ -62,10 +62,12 @@ Widget _buildItem(String name) {
               padding: EdgeInsets.all(4),
               width: 150,
               decoration: BoxDecoration(
-                  color: Color.fromRGBO(0, 0, 0, 0.2),
-                  borderRadius: BorderRadiusDirectional.only(
-                      bottomStart: Radius.circular(10),
-                      bottomEnd: Radius.circular(10))),
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+                borderRadius: BorderRadiusDirectional.only(
+                  bottomStart: Radius.circular(10),
+                  bottomEnd: Radius.circular(10),
+                ),
+              ),
               child: Text(
                 name,
                 textAlign: TextAlign.center,

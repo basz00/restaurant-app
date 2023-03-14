@@ -42,22 +42,36 @@ class OverviewPage extends StatelessWidget {
       future: DefaultAssetBundle.of(context)
           .loadString('assets/local_restaurants.json'),
       builder: (context, snapshot) {
-        final restaurants = parseRestaurants(snapshot.data);
-        return Expanded(
-          child: ListView.builder(
-              itemCount: restaurants.length,
-              itemBuilder: (context, index) {
-                final restaurant = restaurants[index];
-                return RestaurantListItem(
-                    key: Key(restaurant.id),
-                    restaurant: restaurant,
-                    onTapAction: () => {
-                          Navigator.pushNamed(context, DetailsPage.routeName,
-                              arguments: restaurant)
-                        });
-              }),
-        );
+        if (snapshot.hasData) {
+          return _buildSuccess(snapshot.data);
+        } else if (snapshot.hasError) {
+          return SizedBox(
+            height: 10,
+          );
+        } else {
+          return SizedBox(
+            height: 10,
+          );
+        }
       },
+    );
+  }
+
+  Widget _buildSuccess(String? rawJson) {
+    final restaurants = parseRestaurants(rawJson);
+    return Expanded(
+      child: ListView.builder(
+          itemCount: restaurants.length,
+          itemBuilder: (context, index) {
+            final restaurant = restaurants[index];
+            return RestaurantListItem(
+                key: Key(restaurant.id),
+                restaurant: restaurant,
+                onTapAction: () => {
+                      Navigator.pushNamed(context, DetailsPage.routeName,
+                          arguments: restaurant)
+                    });
+          }),
     );
   }
 }
